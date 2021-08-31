@@ -1,0 +1,137 @@
+discord_webhook: 'https://discord.com/api/webhooks/YOUR/DISCORD_WEBHOOK_HERE'
+messages:
+  prefix: '&8[&cAdmin&3Secure&8]&r '
+  auth_wait: '&6Please wait...'
+  auth_error: '&cThere was an error trying to communicate to the webhook! Please rejoin or check config!'
+  auth_request: "&6We need to verify it's you, please look at your administration discord and put the following command &e/adminsc <code>"
+  auth_valid: "&aWe have successfully verified it's you! &6&nHave fun!"
+  auth_invalid: "&cThe code was invalid!"
+login_persistence:
+  enabled: true
+  delay: 5000
+commands:
+  auth_valid:
+    - ''
+  auth_invalid:
+    - 'kick %player_name% &cThe code was invalid!'
+security_code:
+  max_number: 9999999
+  allowed_commands:
+    - login
+    - l
+    - reg
+    - register
+  join_config:
+    apply_blindness: true
+    play_sound: true
+    triggers:
+      gamemode: true
+      op: true
+      permissions:
+        enabled: true
+        perms:
+          - worldedit.*
+          - minecraft.command.teleport
+          - minecraft.command.tp
+          - minecraft.command.gamemode
+          - minecraft.command.op
+  responses:
+    auth_request:
+      content:
+        0:
+          type: EMBED
+          content:
+            0:
+              type: TITLE
+              content: AdminSecure
+            1:
+              type: DESCRIPTION
+              content: 'Security Code requested!'
+            2:
+              type: FIELD
+              content:
+                title: Player
+                content: '%player_name%'
+                inline: true
+            3:
+              type: FIELD
+              content:
+                title: Code
+                content: '%new_code%'
+                inline: true
+            4:
+              type: COLOR
+              content: YELLOW
+            5:
+              type: AUTHOR
+              content:
+                author: AdminSecure
+                url: https://github.com/PK2-Stimpy
+                imageUrl: https://i.imgur.com/LR2A6vq.png
+            6:
+              type: FOOTER
+              content:
+                footer: PK2_Stimpy
+                url: https://i.imgur.com/LR2A6vq.png
+    auth_valid:
+      content:
+        0:
+          type: EMBED
+          content:
+            0:
+              type: TITLE
+              content: AdminSecure
+            1:
+              type: DESCRIPTION
+              content: 'Security Code was correct!'
+            2:
+              type: FIELD
+              content:
+                title: Player
+                content: '%player_name%'
+                inline: true
+            3:
+              type: COLOR
+              content: GREEN
+            4:
+              type: AUTHOR
+              content:
+                author: AdminSecure
+                url: https://github.com/PK2-Stimpy
+                imageUrl: https://i.imgur.com/LR2A6vq.png
+            5:
+              type: FOOTER
+              content:
+                footer: PK2_Stimpy
+                url: https://i.imgur.com/LR2A6vq.png
+    auth_invalid:
+      content:
+        0:
+          type: EMBED
+          content:
+            0:
+              type: TITLE
+              content: AdminSecure
+            1:
+              type: DESCRIPTION
+              content: 'Security Code was incorrect!'
+            2:
+              type: FIELD
+              content:
+                title: Player
+                content: '%player_name%'
+                inline: true
+            3:
+              type: COLOR
+              content: RED
+            4:
+              type: AUTHOR
+              content:
+                author: AdminSecure
+                url: https://github.com/PK2-Stimpy
+                imageUrl: https://i.imgur.com/LR2A6vq.png
+            5:
+              type: FOOTER
+              content:
+                footer: PK2_Stimpy
+                url: https://i.imgur.com/LR2A6vq.png

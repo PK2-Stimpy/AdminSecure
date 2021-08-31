@@ -1,0 +1,14 @@
+name: AdminSecure
+version: 1.0
+author: PK2_Stimpy
+main: me.pk2.adminsecure.AdminSecure
+commands:
+  adminsc-reload:
+    usage: /adminsc-reload
+    description: Reloads the plugin.
+  adminsc:
+    usage: /adminsc <code>
+    description: Verifies the code.
+  adminsecure:
+    usage: /adminsecure
+    description: AdminSecure splash command.
