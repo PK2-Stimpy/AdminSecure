@@ -5,9 +5,9 @@ _The best plugin to protect anarchy servers and mc servers in general against op
 When the server detects a player has been oped or has gamemode creative or special permissions it sends a message to the webhook you configured. Then, it tells the player to input the code sent to the webhook and if the code is valid, it verifies the player but if the code isn't valid, it kicks the player(or what you told the plugin to do).
 
 ### Commands
-* /adminsecure **->** ***Info command.***
+* /adminsc-reload **->** ***Reload the configuration.***
 * /adminsc \<code> **->** ***Verify command.***
-* /reload **->** ***Reload the configuration.***
+* /adminsecure **->** ***Info command.***
 
 ### Permissions
 * **adminsecure.command.adminsc** *(/adminsc command permission)*
