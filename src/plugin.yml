@@ -1,5 +1,5 @@
 name: AdminSecure
-version: 1.0
+version: 1.1
 author: PK2_Stimpy
 main: me.pk2.adminsecure.AdminSecure
 commands:

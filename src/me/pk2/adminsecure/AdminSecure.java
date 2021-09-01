@@ -4,6 +4,7 @@ import me.pk2.adminsecure.command.CommandHandler;
 import me.pk2.adminsecure.config.ConfigParser;
 import me.pk2.adminsecure.user.UserListener;
 import me.pk2.adminsecure.user.UserManager;
+import me.pk2.adminsecure.util.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,6 +28,8 @@ public class AdminSecure extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
+
+        Metrics metrics = new Metrics(this, 12666); /* 666 */
 
         getConfig().options().copyDefaults(true);
         saveConfig();
