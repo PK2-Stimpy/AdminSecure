@@ -52,6 +52,7 @@ public class CommandAdminsc extends Command {
         for(String command : ConfigDefault.commands.auth_valid)
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ChatColor.translateAlternateColorCodes('&', command.replaceAll("%player_name%", sender.getName()).replaceAll("%code%", Integer.toString(user.code))));
         Player player = (Player)sender;
+        AdminSecure.INSTANCE.ipWhitelister.put(player);
         if(player.isValid() && player.hasPotionEffect(PotionEffectType.BLINDNESS))
             player.removePotionEffect(PotionEffectType.BLINDNESS);
     }

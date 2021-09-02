@@ -41,6 +41,7 @@ security_code: # Security code config.
   join_config: # Config when joining.
     apply_blindness: true # Apply blindness to player when joining.
     play_sound: true # Play a sound when joining.
+    check_ip: false # Check if the ip is already verified.
     triggers:
       gamemode: true # Trigger webhook when gamemode.
       op: true # Trigger webhook when op.

@@ -25,7 +25,8 @@ public class ConfigDefault {
         public static class join_config {
             public static boolean
                     apply_blindness,
-                    play_sound;
+                    play_sound,
+                    check_ip;
             public static class triggers {
                 public static boolean
                         gamemode,

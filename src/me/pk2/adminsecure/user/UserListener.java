@@ -3,6 +3,7 @@ package me.pk2.adminsecure.user;
 import me.pk2.adminsecure.AdminSecure;
 import me.pk2.adminsecure.config.ConfigDefault;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,6 +34,8 @@ public class UserListener implements Listener {
         return false;
     }
     public void fullJoinSecurityCheck(Player player) {
+        if(player == null || !player.isValid())
+            return;
         if(!AdminSecure.INSTANCE.userManager.eliminationProcessPlayers.contains(player.getName()) && (AdminSecure.INSTANCE.userManager.verifiedPlayers.contains(player.getName()) || AdminSecure.INSTANCE.userManager.frozenPlayers.contains(player.getName().toLowerCase())))
             return;
         if(AdminSecure.INSTANCE.userManager.eliminationProcessPlayers.contains(player.getName())) {
@@ -50,8 +53,14 @@ public class UserListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onJoin(PlayerJoinEvent event) {
-        if(AdminSecure.INSTANCE.userManager == null)
+        if(AdminSecure.INSTANCE.userManager == null || AdminSecure.INSTANCE.ipWhitelister == null)
             return;
+        if(ConfigDefault.security_code.join_config.check_ip && AdminSecure.INSTANCE.ipWhitelister.get(event.getPlayer()) != null) {
+            AdminSecure.INSTANCE.userManager.verifiedPlayers.add(event.getPlayer().getName().toLowerCase());
+            AdminSecure.INSTANCE.getLogger().info("Bypassed already verified ip \"" + AdminSecure.INSTANCE.ipWhitelister.get(event.getPlayer()).address + "\". Username=\"" + event.getPlayer().getName() + "\"");
+            event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', ConfigDefault.messages.prefix + ConfigDefault.messages.auth_valid));
+            return;
+        }
 
         AdminSecure.INSTANCE.userManager.handleUserAdd(event.getPlayer());
         fullJoinSecurityCheck(event.getPlayer());

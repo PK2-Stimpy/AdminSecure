@@ -139,6 +139,7 @@ public class ConfigParser {
         /* SECURITY_CODE JOIN_CONFIG */
         ConfigDefault.security_code.join_config.apply_blindness = configuration.getBoolean("security_code.join_config.apply_blindness");
         ConfigDefault.security_code.join_config.play_sound = configuration.getBoolean("security_code.join_config.play_sound");
+        ConfigDefault.security_code.join_config.check_ip = configuration.getBoolean("security_code.join_config.check_ip");
         /* SECURITY_CODE JOIN_CONFIG TRIGGERS */
         ConfigDefault.security_code.join_config.triggers.gamemode = configuration.getBoolean("security_code.join_config.triggers.gamemode");
         ConfigDefault.security_code.join_config.triggers.op = configuration.getBoolean("security_code.join_config.triggers.op");

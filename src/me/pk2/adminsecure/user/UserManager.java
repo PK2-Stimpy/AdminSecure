@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UserManager {
-    public final ArrayList<String> frozenPlayers;
-    public final ArrayList<String> verifiedPlayers;
-    public final ArrayList<String> eliminationProcessPlayers;
+    public volatile ArrayList<String> frozenPlayers;
+    public volatile ArrayList<String> verifiedPlayers;
+    public volatile ArrayList<String> eliminationProcessPlayers;
     private ArrayList<User> users;
     public UserManager() {
         this.users = new ArrayList<>();
@@ -38,6 +38,8 @@ public class UserManager {
 
     public void handleUserAdd(Player player, boolean bypassPermission) {
         if((!player.hasPermission("adminsecure.code-verification") && !bypassPermission) || frozenPlayers.contains(player.getName().toLowerCase()) || verifiedPlayers.contains(player.getName()) || !player.isValid())
+            return;
+        if(ConfigDefault.security_code.join_config.check_ip && AdminSecure.INSTANCE.ipWhitelister.get(player) != null)
             return;
 
         this.frozenPlayers.add(player.getName().toLowerCase());
@@ -69,13 +71,10 @@ public class UserManager {
         }).start();
 
         new Thread(() -> {
-            while(Bukkit.getPlayer(name) != null) {
+            while(player.isValid()) {
                 AdminSecure.INSTANCE.userListener.fullJoinSecurityCheck(player);
                 try { Thread.sleep(50); } catch(InterruptedException exception) { exception.printStackTrace(); }
             }
-
-            verifiedPlayers.remove(player.getName());
-            handleUserRemove(player);
         }).start();
 
         /* BLINDNESS */

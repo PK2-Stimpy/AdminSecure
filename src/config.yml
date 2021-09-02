@@ -24,6 +24,7 @@ security_code:
   join_config:
     apply_blindness: true
     play_sound: true
+    check_ip: false
     triggers:
       gamemode: true
       op: true
